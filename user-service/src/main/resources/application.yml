@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/ewallet_users
+    username: root
+    password: HelloMoto123
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+
+user:
+  redis:
+    key:
+      expiry: 14400

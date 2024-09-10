@@ -1,0 +1,16 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/ewallet_wallet
+    username: root
+    password: HelloMoto123
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+
+wallet:
+  create:
+    opening-balance: 80.0
