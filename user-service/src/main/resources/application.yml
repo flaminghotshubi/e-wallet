@@ -1,9 +1,10 @@
 spring:
+  application:
+    name: user-service
   datasource:
     url: jdbc:mysql://localhost:3306/ewallet_users
     username: root
     password: HelloMoto123
-
   jpa:
     show-sql: true
     hibernate:
@@ -13,3 +14,13 @@ user:
   redis:
     key:
       expiry: 14400
+
+server:
+  port: 8081
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka

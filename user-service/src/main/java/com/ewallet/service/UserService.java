@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -30,11 +31,11 @@ public class UserService {
     @Autowired
     UserCacheRepository userCacheRepository;
 
-    public User create(User user) {
+    public ResponseEntity<User> create(User user) {
         try {
             User newUser = userRepository.save(user);
             kafkaTemplate.send(Constants.USER_CREATED_TOPIC, objectMapper.writeValueAsString(newUser));
-            return newUser;
+            return new ResponseEntity<>(newUser, HttpStatus.CREATED);
         } catch (Exception e) {
             logger.error("Error occurred while creating user: ", e);
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Error occurred while saving user details");
