@@ -4,6 +4,7 @@ server:
 spring:
   application:
     name: api-gateway
+    jwt-secret: aGVsbG9teWRhcmxpbmcxMjk3NjUzMDk4MTUyNzc4OW9wdHk=
   cloud:
     gateway:
       routes:
@@ -11,10 +12,12 @@ spring:
           uri: lb://USER-SERVICE
           predicates:
             - Path=/users/** # Path predicate for URI path matching
+          filters:
+            - AuthenticationFilter
 
-#logging:
-#  level:
-#    root: debug
+logging:
+  level:
+    root: debug
 
 eureka:
   instance:

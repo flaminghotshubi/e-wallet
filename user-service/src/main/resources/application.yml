@@ -1,6 +1,8 @@
 spring:
   application:
     name: user-service
+    jwt-secret: aGVsbG9teWRhcmxpbmcxMjk3NjUzMDk4MTUyNzc4OW9wdHk=
+    jwtExpirationMs: 600000
   datasource:
     url: jdbc:mysql://localhost:3306/ewallet_users
     username: root
@@ -8,7 +10,7 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
 
 user:
   redis:
@@ -24,3 +26,7 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+logging:
+  level:
+    root: debug
